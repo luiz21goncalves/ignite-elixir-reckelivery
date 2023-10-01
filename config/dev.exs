@@ -2,10 +2,11 @@ import Config
 
 # Configure your database
 config :rockelivery, Rockelivery.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "docker",
+  password: "docker",
   hostname: "localhost",
-  database: "rockelivery_dev",
+  database: "ignite-elixir-rockelivery",
+  port: 5432,
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10

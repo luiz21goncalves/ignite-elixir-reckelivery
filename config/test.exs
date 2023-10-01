@@ -6,10 +6,11 @@ import Config
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
 config :rockelivery, Rockelivery.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "docker",
+  password: "docker",
   hostname: "localhost",
-  database: "rockelivery_test#{System.get_env("MIX_TEST_PARTITION")}",
+  database: "ignite-elixir-rockelivery#{System.get_env("MIX_TEST_PARTITION")}",
+  port: 5432,
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 

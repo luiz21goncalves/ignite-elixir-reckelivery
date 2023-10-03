@@ -11,6 +11,8 @@ defmodule Rockelivery.User do
 
   @mail_regex ~r/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/
 
+  @derive {Jason.Encoder, only: [:id, :age, :address, :cep, :cpf, :email, :name]}
+
   schema "users" do
     field :age, :integer
     field :address, :string

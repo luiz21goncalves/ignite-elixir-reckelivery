@@ -31,7 +31,7 @@ defmodule Rockelivery.User do
     |> validate_length(:password, min: 6)
     |> validate_length(:cep, is: 8)
     |> validate_length(:cpf, is: 11)
-    |> validate_length(:age, greater_then_or_equal: 18)
+    |> validate_number(:age, greater_than_or_equal_to: 18)
     |> validate_format(:email, @mail_regex)
     |> unique_constraint([:email])
     |> unique_constraint([:cpf])

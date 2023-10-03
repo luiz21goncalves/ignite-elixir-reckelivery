@@ -10,7 +10,7 @@ defmodule RockeliveryWeb.ErrorJSON do
   #   %{errors: %{detail: "Internal Server Error"}}
   # end
 
-  def render("400.json", %{result: %Changeset{} = changeset}) do
+  def render("error.json", %{result: %Changeset{} = changeset}) do
     %{message: translate_errors(changeset)}
   end
 

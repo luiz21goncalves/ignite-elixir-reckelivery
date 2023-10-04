@@ -8,6 +8,7 @@ defmodule Rockelivery.User do
   @primary_key {:id, :binary_id, autogenerate: true}
 
   @required_params [:age, :address, :cep, :cpf, :email, :password, :name]
+  @update_params @required_params -- [:password]
 
   @mail_regex ~r/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/
 
@@ -28,8 +29,18 @@ defmodule Rockelivery.User do
 
   def changeset(params) do
     %__MODULE__{}
-    |> cast(params, @required_params)
-    |> validate_required(@required_params)
+    |> validate(params, @required_params)
+  end
+
+  def changeset(struct, params) do
+    struct
+    |> validate(params, @update_params)
+  end
+
+  defp validate(struct, params, fields) do
+    struct
+    |> cast(params, fields)
+    |> validate_required(fields)
     |> validate_length(:password, min: 6)
     |> validate_length(:cep, is: 8)
     |> validate_length(:cpf, is: 11)

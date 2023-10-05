@@ -28,6 +28,8 @@ defmodule RockeliveryWeb.ConnCase do
       import Plug.Conn
       import Phoenix.ConnTest
       import RockeliveryWeb.ConnCase
+
+      alias RockeliveryWeb.Router.Helpers, as: Routes
     end
   end
 

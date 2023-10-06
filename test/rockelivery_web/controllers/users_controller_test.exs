@@ -1,6 +1,10 @@
 defmodule RockeliveryWeb.UsersControllerTest do
   use RockeliveryWeb.ConnCase, async: true
 
+  import Rockelivery.Factory
+
+  alias Ecto.UUID
+
   describe "create/2" do
     test "when all params are valid, creates the user", %{conn: conn} do
       params = %{
@@ -48,6 +52,27 @@ defmodule RockeliveryWeb.UsersControllerTest do
           "name" => ["can't be blank"]
         }
       }
+
+      assert response == expected_response
+    end
+  end
+
+  describe "delete/2" do
+    test "when there is a user with the given id, deletes the user", %{conn: conn} do
+      user = insert(:user)
+
+      response =
+        conn |> delete(Routes.users_path(conn, :delete, user.id)) |> response(:no_content)
+
+      assert response == ""
+    end
+
+    test "when there is no user, returns the error", %{conn: conn} do
+      id = UUID.generate()
+
+      response = conn |> delete(Routes.users_path(conn, :delete, id)) |> response(:not_found)
+
+      {:ok, expected_response} = Jason.encode(%{message: "User not found."})
 
       assert response == expected_response
     end

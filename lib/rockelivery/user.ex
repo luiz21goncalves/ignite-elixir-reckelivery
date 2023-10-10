@@ -1,9 +1,9 @@
 defmodule Rockelivery.User do
   use Ecto.Schema
 
-  alias Ecto.Changeset
-
   import Ecto.Changeset
+
+  alias Ecto.Changeset
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
@@ -12,7 +12,10 @@ defmodule Rockelivery.User do
 
   @mail_regex ~r/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/
 
-  @derive {Jason.Encoder, only: [:id, :age, :address, :cep, :cpf, :email, :name]}
+  @derive {
+    Jason.Encoder,
+    only: [:id, :age, :address, :cep, :cpf, :email, :name, :inserted_at, :updated_at]
+  }
 
   schema "users" do
     field :age, :integer

@@ -7,8 +7,9 @@ defmodule Rockelivery.Order do
   alias Rockelivery.{Item, User}
 
   @primary_key {:id, :binary_id, autogenerate: true}
-  @payment_methods [:money, :credit_card, :debit_card]
+  @foreign_key_type :binary_id
 
+  @payment_methods [:money, :credit_card, :debit_card]
   @required_params [:address, :payment_method, :user_id]
 
   @derive {Jason.Encoder, only: @required_params ++ [:id, :comments, :inserted_at, :updated_at]}

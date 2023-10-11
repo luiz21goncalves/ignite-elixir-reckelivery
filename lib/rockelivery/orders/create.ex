@@ -10,7 +10,7 @@ defmodule Rockelivery.Orders.Create do
     query = from item in Item, where: item.id in ^items_ids
 
     query
-    |> Repo.all(items_ids)
+    |> Repo.all()
     |> ValidadeAndMultiplyItems.call(items_ids, items_params)
     |> handle_items(params)
   end

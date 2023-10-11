@@ -13,6 +13,8 @@ defmodule RockeliveryWeb.Router do
 
     scope "/v1" do
       resources "/users", UsersController, except: [:new, :edit]
+
+      post "/items", ItemsController, :create
     end
   end
 

@@ -1,12 +1,15 @@
 defmodule Rockelivery.BrasilApi.Client do
   use Tesla
 
+  alias Rockelivery.BrasilApi.Behavior
   alias Rockelivery.Error
   alias Tesla.Env
 
-  plug Tesla.Middleware.JSON
+  @behaviour Behavior
 
   @base_url "https://brasilapi.com.br/api/cep/v1/"
+
+  plug Tesla.Middleware.JSON
 
   def get_cep_info(url \\ @base_url, cep) do
     "#{url}#{cep}"

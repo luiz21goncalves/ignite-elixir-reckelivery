@@ -1,4 +1,4 @@
-defmodule Reckelivery.UserTest do
+defmodule Rockelivery.UserTest do
   use Rockelivery.DataCase, async: true
 
   import Rockelivery.Factory
@@ -51,7 +51,7 @@ defmodule Reckelivery.UserTest do
     end
 
     test "when there are some error, returns an invalid changeset" do
-      params = build(:user_params, %{password: "123", age: 15})
+      params = build(:user_params, %{"password" => "123", "age" => 15})
 
       response = User.changeset(params)
 

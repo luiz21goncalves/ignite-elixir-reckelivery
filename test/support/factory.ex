@@ -5,13 +5,13 @@ defmodule Rockelivery.Factory do
 
   def user_params_factory do
     %{
-      age: 25,
-      address: "Rua das bananeiras, 15",
-      cep: "12345678",
-      cpf: "12345678901",
-      email: "email@banana.com",
-      password: "123456",
-      name: "João das Bananeiras"
+      "age" => 25,
+      "address" => "Rua das bananeiras, 15",
+      "cep" => "12345678",
+      "cpf" => "12345678901",
+      "email" => "email@banana.com",
+      "password" => "123456",
+      "name" => "João das Bananeiras"
     }
   end
 
@@ -24,6 +24,17 @@ defmodule Rockelivery.Factory do
       email: "email@banana.com",
       password: "123456",
       name: "João das Bananeiras"
+    }
+  end
+
+  def cep_info_factory do
+    %{
+      "cep" => "01001000",
+      "city" => "São Paulo",
+      "neighborhood" => "Sé",
+      "service" => "correios",
+      "state" => "SP",
+      "street" => "Praça da Sé"
     }
   end
 end

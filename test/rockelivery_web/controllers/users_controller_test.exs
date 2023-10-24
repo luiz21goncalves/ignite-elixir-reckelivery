@@ -38,7 +38,8 @@ defmodule RockeliveryWeb.UsersControllerTest do
                  "email" => "email@banana.com",
                  "name" => "João das Bananeiras",
                  "id" => _id
-               }
+               },
+               "token" => _token
              } = response
     end
 

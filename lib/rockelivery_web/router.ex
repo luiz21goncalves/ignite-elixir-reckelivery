@@ -25,7 +25,7 @@ defmodule RockeliveryWeb.Router do
   scope "/api", RockeliveryWeb do
     pipe_through [:api, :auth]
 
-    scope "v1" do
+    scope "/v1" do
       resources "/users", UsersController, except: [:new, :edit, :create]
 
       post "/items", ItemsController, :create

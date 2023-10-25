@@ -30,6 +30,20 @@ defmodule Rockelivery.Users.CreateTest do
               }} = response
     end
 
+    test "when cep is invalid, returns an error" do
+      params = build(:user_params)
+
+      expect(ClientMock, :get_cep_info, fn _cep ->
+        {:error, Error.build(:bad_request, "Invalid CEP.")}
+      end)
+
+      response = Create.call(params)
+
+      expected_response = {:error, %Error{status: :bad_request, result: "Invalid CEP."}}
+
+      assert expected_response == response
+    end
+
     test "when there are invalid params, returns an error" do
       params = build(:user_params, %{"age" => 10, "password" => "123"})
 

@@ -11,7 +11,7 @@ defmodule Rockelivery.Orders.ReportRunner do
 
   @impl true
   def init(state) do
-    Logger.info("init")
+    Logger.info("Report Runner started...")
 
     schedule_report_generation()
 

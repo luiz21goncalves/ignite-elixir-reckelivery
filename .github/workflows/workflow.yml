@@ -18,6 +18,16 @@ jobs:
         opt: ['26.1.2']
         elixir: ['1.14.5']
 
+    services:
+      postgresdb:
+        image: bitnami/postgresql:16.0.0
+        ports:
+          - 5432:5432
+        env:
+          POSTGRESQL_USERNAME: docker
+          POSTGRESQL_PASSWORD: docker
+          POSTGRESQL_DATABASE: ignite-elixir-rockelivery
+
     steps:
       - name: checkout repository
         uses: actions/checkout@v4

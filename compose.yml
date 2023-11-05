@@ -11,6 +11,12 @@ services:
       - 5432:5432
     volumes:
       - 'postgres_data:/bitnami/postgresql'
+    healthcheck:
+      test: [ "CMD", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
 volumes:
   postgres_data:

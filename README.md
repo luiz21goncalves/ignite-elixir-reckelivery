@@ -1,5 +1,7 @@
 # Rockelivery
 
+[![codecov](https://codecov.io/gh/luiz21goncalves/ignite-elixir-rockelivery/graph/badge.svg?token=81YIYKACRO)](https://codecov.io/gh/luiz21goncalves/ignite-elixir-rockelivery)
+
 To start your Phoenix server:
 
   * Run `mix setup` to install and setup dependencies

@@ -2,6 +2,7 @@ defmodule Rockelivery.Factory do
   use ExMachina.Ecto, repo: Rockelivery.Repo
 
   alias Faker.Random.Elixir, as: Random
+  alias Rockelivery.Item
   alias Rockelivery.User
 
   def user_params_factory do
@@ -47,6 +48,17 @@ defmodule Rockelivery.Factory do
       "description" => Faker.Lorem.paragraph(),
       "price" => Faker.Commerce.price(),
       "photo" => Faker.Internet.image_url()
+    }
+  end
+
+  def item_factory do
+    category_list = [:food, :drink, :dessert]
+
+    %Item{
+      category: Enum.at(category_list, Random.random_between(0, 2)),
+      description: Faker.Lorem.paragraph(),
+      photo: Faker.Internet.image_url(),
+      price: Faker.Commerce.price()
     }
   end
 end

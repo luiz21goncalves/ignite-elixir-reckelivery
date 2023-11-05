@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   build:
-    name: Lint
+    name: Lint  OPT ${{matrix.opt}} / Elixit ${{matrix.elixir}}
     runs-on: ubuntu-22.04
     strategy:
       matrix:

@@ -48,15 +48,5 @@ jobs:
       - name: install dependencies
         run: mix deps.get
 
-      - name: check coverage
-        run: mix coveralls.json
-        env:
-          MIX_ENV: test
-    
-      - name: codecov
-        uses: codecov/codecov-action@v3
-        env:
-          CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
-
       - name: run tests
         run: mix test

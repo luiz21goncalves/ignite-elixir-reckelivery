@@ -1,7 +1,7 @@
-name: Lint
+name: Coverage
 
 on:
-  pull_request: 
+  push:
     branches: ["main"]
 
 permissions: 
@@ -9,12 +9,22 @@ permissions:
 
 jobs:
   build:
-    name: Lint OPT ${{matrix.opt}} / Elixit ${{matrix.elixir}}
+    name: Coverage OPT ${{matrix.opt}} / Elixit ${{matrix.elixir}}
     runs-on: ubuntu-22.04
     strategy:
       matrix:
         opt: ['26.1.2']
         elixir: ['1.14.5']
+
+    services:
+      postgresdb:
+        image: bitnami/postgresql:16.0.0
+        ports:
+          - 5432:5432
+        env:
+          POSTGRESQL_USERNAME: docker
+          POSTGRESQL_PASSWORD: docker
+          POSTGRESQL_DATABASE: ignite-elixir-rockelivery
 
     steps:
       - name: checkout repository
@@ -36,8 +46,12 @@ jobs:
       - name: install dependencies
         run: mix deps.get
 
-      - name: check formatting
-        run: mix format --check-formatted
-      
-      - name: run credo
-        run: mix credo --strict
+      - name: check coverage
+        run: mix coveralls.json
+        env:
+          MIX_ENV: test
+    
+      - name: codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}

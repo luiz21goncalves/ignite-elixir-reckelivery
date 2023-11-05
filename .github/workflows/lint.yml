@@ -1,0 +1,43 @@
+name: Lint
+
+on:
+  pull_request: 
+    branches: ["main"]
+
+permissions: 
+    contents: read
+
+jobs:
+  build:
+    name: Lint
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        opt: ['26.1.2']
+        elixir: ['1.14.5']
+
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+
+      - name: setup elixir
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: ${{matrix.opt}}
+          elixir-version: ${{matrix.elixir}}
+      
+      - name: dependencies cache
+        uses: actions/cache@v3
+        with:
+          path: deps
+          key: ${{runner.os}}-mix-${{hashFiles('**/mix.lock')}}
+          restore-keys: ${{runner.os}}-mix-
+
+      - name: install dependencies
+        run: mix deps.get
+
+      - name: check formatting
+        run: mix format --check-formatted
+      
+      - name: run credo
+        run: mix credo --strict

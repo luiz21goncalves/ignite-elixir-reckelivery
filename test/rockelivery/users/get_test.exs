@@ -4,7 +4,6 @@ defmodule Rockelivery.Users.GetTest do
   import Rockelivery.Factory
 
   alias Rockelivery.Error
-  alias Rockelivery.User
 
   describe "by_id/1" do
     test "when finding the user, returns the user" do

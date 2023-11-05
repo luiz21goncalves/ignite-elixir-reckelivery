@@ -1,4 +1,4 @@
-name: Build & Test 
+name: Test
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   build:
-    name: OTP ${{matrix.opt}} / Elixir ${{matrix.elixir}}
+    name: Test
     runs-on: ubuntu-22.04
     strategy:
       matrix:
@@ -47,12 +47,6 @@ jobs:
 
       - name: install dependencies
         run: mix deps.get
-
-      - name: check formatting
-        run: mix format --check-formatted
-      
-      - name: run credo
-        run: mix credo --strict
 
       - name: check coverage
         run: mix coveralls.json

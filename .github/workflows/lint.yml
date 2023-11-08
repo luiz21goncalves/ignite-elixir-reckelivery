@@ -8,7 +8,7 @@ permissions:
     contents: read
 
 jobs:
-  build:
+  lint:
     name: Lint OPT ${{matrix.opt}} / Elixit ${{matrix.elixir}}
     runs-on: ubuntu-22.04
     strategy:

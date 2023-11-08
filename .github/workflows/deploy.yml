@@ -1,12 +1,11 @@
-name: Coverage
+name: Deploy
 
 on:
-  push:
-    branches: ["main"]
   workflow_run: 
     workflows: ["Test"]
     types: 
       - completed
+    branches: ["main"]
 
 permissions: 
     contents: read
@@ -23,7 +22,7 @@ jobs:
       - name: setup python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.8.1
+          python-version: 3.12.0
           
       - name: gigalixir deploy
         uses: mhanberg/gigalixir-action@v0.6.1

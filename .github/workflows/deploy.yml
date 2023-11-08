@@ -18,6 +18,9 @@ jobs:
     steps:
       - name: checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
           
       - name: setup python
         uses: actions/setup-python@v4
@@ -27,6 +30,7 @@ jobs:
       - name: gigalixir deploy
         uses: mhanberg/gigalixir-action@v0.6.1
         with:
+          GIGALIXIR_CLEAN: true
           GIGALIXIR_APP: every-dimgray-parrot
           GIGALIXIR_USERNAME: ${{ secrets.GIGALIXIR_USERNAME }}
           GIGALIXIR_PASSWORD: ${{ secrets.GIGALIXIR_PASSWORD }}

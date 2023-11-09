@@ -19,13 +19,15 @@ defmodule Rockelivery.Users.UpdateTest do
           "age" => 32
         })
 
+      %User{id: id, address: address, cep: cep, cpf: cpf} = user
+
       assert {:ok,
               %User{
-                id: _id,
+                id: ^id,
                 password: nil,
-                address: "Rua das bananeiras, 15",
-                cep: "12345678",
-                cpf: "12345678901",
+                address: ^address,
+                cep: ^cep,
+                cpf: ^cpf,
                 email: "jane.doe@email.com",
                 name: "Jane Doe",
                 age: 32

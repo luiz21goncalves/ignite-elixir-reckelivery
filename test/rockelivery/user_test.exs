@@ -12,15 +12,25 @@ defmodule Rockelivery.UserTest do
 
       response = User.changeset(params)
 
+      %{
+        "name" => name,
+        "age" => age,
+        "address" => address,
+        "cep" => cep,
+        "cpf" => cpf,
+        "email" => email,
+        "password" => password
+      } = params
+
       assert %Changeset{
                changes: %{
-                 name: "João das Bananeiras",
-                 age: 25,
-                 address: "Rua das bananeiras, 15",
-                 cep: "12345678",
-                 cpf: "12345678901",
-                 email: "email@banana.com",
-                 password: "123456"
+                 name: ^name,
+                 age: ^age,
+                 address: ^address,
+                 cep: ^cep,
+                 cpf: ^cpf,
+                 email: ^email,
+                 password: ^password
                },
                valid?: true
              } = response
@@ -36,15 +46,23 @@ defmodule Rockelivery.UserTest do
         |> User.changeset()
         |> User.changeset(update_params)
 
+      %{
+        "address" => address,
+        "cep" => cep,
+        "cpf" => cpf,
+        "email" => email,
+        "password" => password
+      } = params
+
       assert %Changeset{
                changes: %{
                  name: "Bananinha",
                  age: 27,
-                 address: "Rua das bananeiras, 15",
-                 cep: "12345678",
-                 cpf: "12345678901",
-                 email: "email@banana.com",
-                 password: "123456"
+                 address: ^address,
+                 cep: ^cep,
+                 cpf: ^cpf,
+                 email: ^email,
+                 password: ^password
                },
                valid?: true
              } = response

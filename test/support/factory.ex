@@ -1,31 +1,39 @@
 defmodule Rockelivery.Factory do
   use ExMachina.Ecto, repo: Rockelivery.Repo
 
+  alias Faker.Address.PtBr, as: Address
+  alias Faker.Person.PtBr, as: Person
   alias Faker.Random.Elixir, as: Random
   alias Rockelivery.Item
   alias Rockelivery.User
 
+  def cep_factory do
+    random_cep = Address.zip_code()
+
+    String.replace(random_cep, ~r"\D", "")
+  end
+
   def user_params_factory do
     %{
-      "age" => 25,
-      "address" => "Rua das bananeiras, 15",
-      "cep" => "12345678",
-      "cpf" => "12345678901",
-      "email" => "email@banana.com",
-      "password" => "123456",
-      "name" => "João das Bananeiras"
+      "age" => Random.random_between(18, 99),
+      "address" => Address.street_address(),
+      "cep" => cep_factory(),
+      "cpf" => "#{Random.random_between(11_111_111_111, 99_999_999_999)}",
+      "email" => Faker.Internet.email(),
+      "password" => Faker.String.base64(),
+      "name" => Person.name()
     }
   end
 
   def user_factory do
     %User{
-      age: 25,
-      address: "Rua das bananeiras, 15",
-      cep: "12345678",
-      cpf: "12345678901",
-      email: "email@banana.com",
-      password: "123456",
-      name: "João das Bananeiras"
+      age: Random.random_between(18, 99),
+      address: Address.street_address(),
+      cep: cep_factory(),
+      cpf: "#{Random.random_between(11_111_111_111, 99_999_999_999)}",
+      email: Faker.Internet.email(),
+      password: Faker.String.base64(),
+      name: Person.name()
     }
   end
 

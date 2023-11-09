@@ -18,15 +18,25 @@ defmodule Rockelivery.Users.CreateTest do
 
       response = Create.call(params)
 
+      %{
+        "name" => name,
+        "age" => age,
+        "address" => address,
+        "cep" => cep,
+        "cpf" => cpf,
+        "email" => email,
+        "password" => password
+      } = params
+
       assert {:ok,
               %User{
-                age: 25,
-                address: "Rua das bananeiras, 15",
-                cep: "12345678",
-                cpf: "12345678901",
-                email: "email@banana.com",
-                password: "123456",
-                name: "João das Bananeiras"
+                age: ^age,
+                address: ^address,
+                cep: ^cep,
+                cpf: ^cpf,
+                email: ^email,
+                password: ^password,
+                name: ^name
               }} = response
     end
 

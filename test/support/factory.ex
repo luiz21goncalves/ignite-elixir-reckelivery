@@ -45,7 +45,7 @@ defmodule Rockelivery.Factory do
 
     %{
       "category" => Enum.at(category_list, Random.random_between(0, 2)),
-      "description" => Faker.Lorem.paragraph(),
+      "description" => Faker.Lorem.sentence(),
       "price" => Faker.Commerce.price(),
       "photo" => Faker.Internet.image_url()
     }
@@ -56,7 +56,7 @@ defmodule Rockelivery.Factory do
 
     %Item{
       category: Enum.at(category_list, Random.random_between(0, 2)),
-      description: Faker.Lorem.paragraph(),
+      description: Faker.Lorem.sentence(),
       photo: Faker.Internet.image_url(),
       price: Faker.Commerce.price()
     }
